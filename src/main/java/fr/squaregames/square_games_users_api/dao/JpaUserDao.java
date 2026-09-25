@@ -5,6 +5,7 @@ import fr.squaregames.square_games_users_api.entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.List;
 
 @Repository
 public class JpaUserDao implements UserDao {
@@ -15,10 +16,19 @@ public class JpaUserDao implements UserDao {
         this.userRepository = userRepository;
     }
 
-
     @Override
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
@@ -35,4 +45,5 @@ public class JpaUserDao implements UserDao {
     public boolean existsById(Long id) {
         return userRepository.existsById(id);
     }
+
 }
